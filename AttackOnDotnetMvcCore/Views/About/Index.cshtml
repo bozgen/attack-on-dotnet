@@ -1,0 +1,164 @@
+﻿@{
+    ViewBag.Title = "Index";
+    ViewBag.PageName = "About";
+    ViewBag.Explanation = "Learn all about us. Who we are, what we have done up do this point, why did we want to start this organization and so on.";
+    ViewBag.UpperPageName = "Home";
+    ViewBag.UpperRoute = "/Home/Index";
+}
+
+@Html.PartialAsync("_Breadcrumbs").Result;
+<!-- ======= About Us Section ======= -->
+<section id="about" class="about">
+    <div class="container" data-aos="fade-up">
+
+        <div class="row gy-4">
+            <div class="col-lg-6 position-relative align-self-center order-lg-last order-first">
+                <img src="/Logis/assets/img/about.jpg" class="img-fluid" alt="">
+                <a href="https://www.youtube.com/watch?v=LXb3EKWsInQ" class="glightbox play-btn"></a>
+            </div>
+            <div class="col-lg-6 content order-last  order-lg-first">
+                <h3>About Us</h3>
+                <p>
+                    We are a team who is well aware of the cyber threats, threat actors, the risks online and how much damage a cyber attack can cause. We want to spread the awareness and help people protect themselves from these threats. Because we believe that no company or initiative can protect all the people from cyber attacks since there are infinitely many, so the best solution to this problem is everyone protecting one person,  themselves.
+                </p>
+                <ul>
+                    <li data-aos="fade-up" data-aos-delay="100">
+                        <i class="bi bi-diagram-3"></i>
+                        <div>
+                            <h5>Our Model of Cyber Security</h5>
+                            <p>Help yourself, help everyone</p>
+                        </div>
+                    </li>
+                    <li data-aos="fade-up" data-aos-delay="200">
+                        <i class="mt-4 fa-solid fa-people-group"></i>
+                        <div>
+                            <h5>Our Team</h5>
+                            <p>Our team is composed of qualified and experienced people in the field of cyber security. We continuously improve the services we provide and increase the numbers of cyber attack simulations - vulnerability tests - that we have on our website.</p>
+                        </div>
+                    </li>
+                    <li data-aos="fade-up" data-aos-delay="300">
+                        <i class="bi bi-broadcast"></i>
+                        <div>
+                            <h5>Our Goal</h5>
+                            <p>What we focus on currently is to raise, promote and spread awareness all around the world about cyber security. Help us spread the word.</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+</section><!-- End About Us Section -->
+<!-- ======= Stats Counter Section ======= -->
+<section id="stats-counter" class="stats-counter pt-0">
+    <div class="container" data-aos="fade-up">
+
+        <div class="row gy-4">
+
+            <div class="col-lg-3 col-md-6">
+                <div class="stats-item text-center w-100 h-100">
+                    <span data-purecounter-start="0" data-purecounter-end="76" data-purecounter-duration="1" class="purecounter"></span>
+                    <p>Companies</p>
+                </div>
+            </div><!-- End Stats Item -->
+
+            <div class="col-lg-3 col-md-6">
+                <div class="stats-item text-center w-100 h-100">
+                    <span data-purecounter-start="0" data-purecounter-end="856" data-purecounter-duration="1" class="purecounter"></span>
+                    <p>Computers</p>
+                </div>
+            </div><!-- End Stats Item -->
+
+            <div class="col-lg-3 col-md-6">
+                <div class="stats-item text-center w-100 h-100">
+                    <span data-purecounter-start="0" data-purecounter-end="86" data-purecounter-duration="1" class="purecounter"></span>
+                    <p>% Breach</p>
+                </div>
+            </div><!-- End Stats Item -->
+
+            <div class="col-lg-3 col-md-6">
+                <div class="stats-item text-center w-100 h-100">
+                    <span data-purecounter-start="0" data-purecounter-end="0" data-purecounter-duration="1" class="purecounter"></span>
+                    <p>$ spent</p>
+                </div>
+            </div><!-- End Stats Item -->
+
+        </div>
+
+    </div>
+</section><!-- End Stats Counter Section -->
+<!-- ======= Our Team Section ======= -->
+<section id="team" class="team pt-0">
+    <div class="container" data-aos="fade-up">
+
+        <div class="section-header">
+            <span>Our Team Leaders</span>
+            <h2>Our Team Leaders</h2>
+
+        </div>
+
+        <div class="row" data-aos="fade-up" data-aos-delay="100">
+
+            <div class="col-lg-4 col-md-6 d-flex">
+                <div class="member">
+                    <img src="/Logis/assets/img/team/team-1.jpg" class="img-fluid" alt="">
+                    <div class="member-content">
+                        <h4>Bilal Özgen</h4>
+                        <span>Chief Technology Officer</span>
+                        <p>
+                            Magni qui quod omnis unde et eos fuga et exercitationem. Odio veritatis perspiciatis quaerat qui aut aut aut
+                        </p>
+                        <div class="social">
+                            <a href=""><i class="bi bi-twitter"></i></a>
+                            <a href=""><i class="bi bi-facebook"></i></a>
+                            <a href=""><i class="bi bi-instagram"></i></a>
+                            <a href=""><i class="bi bi-linkedin"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div><!-- End Team Member -->
+
+            <div class="col-lg-4 col-md-6 d-flex">
+                <div class="member">
+                    <img src="/Logis/assets/img/team/team-2.jpg" class="img-fluid" alt="">
+                    <div class="member-content">
+                        <h4>Emre Olca</h4>
+                        <span>Chief Executive Officer</span>
+                        <p>
+                            Repellat fugiat adipisci nemo illum nesciunt voluptas repellendus. In architecto rerum rerum temporibus
+                        </p>
+                        <div class="social">
+                            <a href=""><i class="bi bi-twitter"></i></a>
+                            <a href=""><i class="bi bi-facebook"></i></a>
+                            <a href=""><i class="bi bi-instagram"></i></a>
+                            <a href=""><i class="bi bi-linkedin"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div><!-- End Team Member -->
+
+            <div class="col-lg-4 col-md-6 d-flex">
+                <div class="member">
+                    <img src="/Logis/assets/img/team/team-3.jpg" class="img-fluid" alt="">
+                    <div class="member-content">
+                        <h4>Barış Yazıcı</h4>
+                        <span>Chief Operating Officer</span>
+                        <p>
+                            Voluptas necessitatibus occaecati quia. Earum totam consequuntur qui porro et laborum toro des clara
+                        </p>
+                        <div class="social">
+                            <a href=""><i class="bi bi-twitter"></i></a>
+                            <a href=""><i class="bi bi-facebook"></i></a>
+                            <a href=""><i class="bi bi-instagram"></i></a>
+                            <a href=""><i class="bi bi-linkedin"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div><!-- End Team Member -->
+
+        </div>
+
+    </div>
+</section><!-- End Our Team Section -->
+@Html.PartialAsync("_Testimonials").Result;
+@Html.PartialAsync("_FAQ").Result;

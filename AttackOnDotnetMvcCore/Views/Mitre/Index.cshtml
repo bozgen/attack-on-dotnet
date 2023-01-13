@@ -1,0 +1,18 @@
+﻿@{
+    ViewBag.Title = "Index";
+    ViewBag.PageName = "What is MITRE ATTACK";
+    ViewBag.Explanation = "MITRE ATT&CK is a framework that describes procedures, tactics and techniques that threat actors use to attack the target computers.";
+    ViewBag.UpperPageName = "Home";
+    ViewBag.UpperRoute = "/Home/Index";
+}
+
+@Html.PartialAsync("_Breadcrumbs").Result;
+
+<section class="sample-page">
+    <div class="container" data-aos="fade-up">
+        <p>
+            MITRE ATT&CK is a framework that describes procedures, tactics and techniques that threat actors use to attack the target computers.
+            The framework is widely accepted and used as a foundation while trying to understand the attacker's perspective and develop counter strategies.
+        </p>
+    </div>
+</section>

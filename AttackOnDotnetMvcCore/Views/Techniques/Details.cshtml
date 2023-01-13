@@ -1,0 +1,50 @@
+﻿@using AttackOnDotnetMvcCore.Models
+@model Tuple<Technique, List<string>>
+
+@{
+    ViewData["Title"] = "Details";
+    ViewBag.PageName = Model.Item1.Name;
+    ViewBag.Explanation = Model.Item1.ShortDescription;
+    ViewBag.UpperPageName = "Techniques";
+    ViewBag.UpperRoute = "/Techniques/Index";
+}
+
+@Html.PartialAsync("_Breadcrumbs").Result;
+
+<div class="container">
+    <h2 class="header">Technique Information</h2>
+    <table class="table w-25">
+        <tbody>
+            <tr class="row">
+                <td class="col">Technique ID</td>
+                <td class="col">@("T" + Model.Item1.ID.ToString())</td>
+            </tr>
+            <tr class="row">
+                <td class="col">Technique Name</td>
+                <td class="col">@Model.Item1.Name</td>
+            </tr>
+            <tr class="row">
+                <td class="col">Tactic Name</td>
+                <td class="col">@Model.Item1.TacticName</td>
+            </tr>
+            <tr class="row">
+                <td class="col">Platforms</td>
+                <td class="col">
+                    @if (Model.Item2 != null)
+                    {
+                        @foreach (var p in Model.Item2)
+                        {
+                            <p>@p</p>
+                        }
+                    }
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    @*<div>
+        <a asp-action="Edit" asp-route-id="@Model?.ID">Edit</a> |
+        <a asp-action="Index">Back to List</a>
+    </div>*@
+
+</div>
+

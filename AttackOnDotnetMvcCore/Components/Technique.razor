@@ -1,0 +1,43 @@
+﻿<div class="row gy-1 pricing-item mt-4 p-1" data-aos="fade-up" data-aos-delay="100">
+    <div class="col-lg-2 d-flex align-items-center justify-content-center">
+        <h3>@("T" + ID)</h3>
+    </div>
+    <div class="col-lg-2 d-flex align-items-center justify-content-center">
+        <h6>@Name</h6>
+    </div>
+    <div class="col-lg-2 d-flex align-items-center justify-content-center">
+        <h5>@Tacticname</h5>
+    </div>
+    <div class="col-lg-3 d-flex align-items-center justify-content-center">
+        <ul>
+            @foreach (var platform in platformsList) {
+                <li>@platform</li>
+            }
+        </ul>
+    </div>
+    <div class="col-lg-3 d-flex align-items-center justify-content-center">
+        <div class="text-center"><a href="/Techniques/Details/@ID" class="buy-btn">See Technique Details</a></div>
+    </div>
+</div>
+
+@code {
+    [Parameter] public int ID { get; set; }
+    [Parameter] public string Name { get; set; }
+    [Parameter] public string Tacticname { get; set; }
+    [Parameter] public string ShortDescription { get; set; }
+    [Parameter] public string LongDescription { get; set; }
+    [Parameter] public string Platforms { get; set; }
+    public List<string> platformsList { get; set; }
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        platformsList = Platforms.Split(',').ToList();
+    }
+
+    protected override void OnParametersSet()
+    {
+        base.OnParametersSet();
+        platformsList = Platforms.Split(',').ToList();       
+    }
+}
