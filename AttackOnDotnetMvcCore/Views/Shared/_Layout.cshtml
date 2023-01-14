@@ -59,16 +59,14 @@
             <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
             <nav id="navbar" class="navbar">
                 <ul>
-                    <partial name="_LoginPartial" />
                     <li>
-                        <a class="@(ViewContext.RouteData.Values["Controller"].ToString() == "Home" ? "active" : "" )"
-                           href="/Home/Index">
+                        <a href="/Home/Index">
                             Home
                         </a>
                     </li>
                     <li>
-                        @Html.ActionLink("About", "Index", "About", null,
-                        new { @class = ViewContext.RouteData.Values["Controller"].ToString() == "About" ? "active" : "" })
+                        @Html.ActionLink("About", "Index", "About")
+                        @*, null, new { @class = ViewContext.RouteData.Values["Controller"].ToString() == "About" ? "active" : "" })*@
                     </li>
 
                     <li class="dropdown">
@@ -82,16 +80,15 @@
                                     <li><a href="/Techniques/Details/1202">Technique T1202</a></li>
                                 </ul>
                             </li>
-
                         </ul>
                     </li>
                     <li>
-                        @Html.ActionLink("Contact", "Index", "Contact", null,
-                        new { @class = ViewContext.RouteData.Values["Controller"].ToString() == "Contact" ? "active" : "" })
+                        @Html.ActionLink("Contact", "Index", "Contact")
+                        @*,null,new { @class = ViewContext.RouteData.Values["Controller"].ToString() == "Contact" ? "active" : "" })*@
                     </li>
+                    <partial name="_LoginPartial" />
                     <li>
-                        @Html.ActionLink("Run Tests", "Index", "Tests", null,
-                        new { @class = "get-a-quote" })
+                        @Html.ActionLink("Run Tests", "Index", "Tests", null, new { @class = "get-a-quote" })
                     </li>
                 </ul>
             </nav><!-- .navbar -->

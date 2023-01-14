@@ -1,0 +1,12 @@
+﻿@page
+@model ConfirmEmailModel
+@{
+    ViewData["Title"] = "Confirm email";
+    ViewBag.PageName = "Confirm Email";
+    ViewBag.UpperPageName = "Register";
+    ViewBag.UpperRoute = "/Identity/Account/Register";
+}
+
+<partial name="_Breadcrumbs" />
+<h1>@ViewData["Title"]</h1>
+<partial name="_StatusMessage" model="Model.StatusMessage" />
