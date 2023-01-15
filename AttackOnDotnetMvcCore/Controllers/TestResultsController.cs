@@ -7,9 +7,13 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using AttackOnDotnetMvcCore.Data;
 using AttackOnDotnetMvcCore.Models;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.Extensions.Configuration.UserSecrets;
+using System.Security.Claims;
 
 namespace AttackOnDotnetMvcCore.Controllers
 {
+    [Authorize(Roles = "user,admin")]
     public class TestResultsController : Controller
     {
         private readonly AttackOnDotnetMvcCoreContext _context;
@@ -22,7 +26,10 @@ namespace AttackOnDotnetMvcCore.Controllers
         // GET: TestResults
         public async Task<IActionResult> Index()
         {
-              return View(await _context.TestResult.ToListAsync());
+            string UserID = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            var results = await _context.TestResult.Where(r => r.UserID == UserID).OrderByDescending(r=>r.TestDate).ToListAsync();
+            var tests = await _context.Test.ToListAsync();
+            return View(Tuple.Create(results, tests));
         }
 
         // GET: TestResults/Details/5
@@ -32,87 +39,14 @@ namespace AttackOnDotnetMvcCore.Controllers
             {
                 return NotFound();
             }
-
+            string UserID = User.FindFirst(ClaimTypes.NameIdentifier).Value;
             var testResult = await _context.TestResult
-                .FirstOrDefaultAsync(m => m.ID == id);
+                .FirstOrDefaultAsync(m => m.ID == id && m.UserID == UserID);
             if (testResult == null)
             {
                 return NotFound();
             }
 
-            return View(testResult);
-        }
-
-        // GET: TestResults/Create
-        public IActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: TestResults/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,UserID,TechniqueID,TestDate,Result,TestNumber")] TestResult testResult)
-        {
-            if (ModelState.IsValid)
-            {
-                _context.Add(testResult);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            return View(testResult);
-        }
-
-        // GET: TestResults/Edit/5
-        public async Task<IActionResult> Edit(int? id)
-        {
-            if (id == null || _context.TestResult == null)
-            {
-                return NotFound();
-            }
-
-            var testResult = await _context.TestResult.FindAsync(id);
-            if (testResult == null)
-            {
-                return NotFound();
-            }
-            return View(testResult);
-        }
-
-        // POST: TestResults/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,UserID,TechniqueID,TestDate,Result,TestNumber")] TestResult testResult)
-        {
-            if (id != testResult.ID)
-            {
-                return NotFound();
-            }
-
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    _context.Update(testResult);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!TestResultExists(testResult.ID))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
-            }
             return View(testResult);
         }
 
@@ -151,6 +85,24 @@ namespace AttackOnDotnetMvcCore.Controllers
             
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
+        }
+
+        public IActionResult Secure()
+        {
+            return View();
+        }
+        public IActionResult Vulnerable()
+        {
+            return View();
+        }
+        public IActionResult TestFailed()
+        {
+            return View();
+        }
+
+        public IActionResult NotImplemented()
+        {
+            return View();
         }
 
         private bool TestResultExists(int id)

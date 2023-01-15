@@ -7,24 +7,27 @@
     {
         Layout = "/Areas/Identity/Pages/_Layout.cshtml";
     }
+    ViewBag.PageName = "Account";
+    ViewBag.UpperPageName = "Home";
+    ViewBag.UpperRoute = "/Home";
+    ViewBag.Explanation = "You can edit your account details here";
 }
 
 <partial name="_Breadcrumbs" />
 
-
 <div class="container">
     <div class="section-header">
         <span>Manage your account</span>
-        <h1 >Manage your account</h1>
+        <h2>Manage your account</h2>
     </div>
     <div>
         <h3>Change your account settings</h3>
         <hr />
         <div class="row">
-            <div class="col-md-4">
+            <div class="col-0 col-md-5">
                 <partial name="_ManageNav" />
             </div>
-            <div class="col-md-8">
+            <div class="col-md-7">
                 @RenderBody()
             </div>
         </div>

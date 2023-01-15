@@ -4,6 +4,7 @@ using AttackOnDotnetMvcCore.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AttackOnDotnetMvcCore.Migrations
 {
     [DbContext(typeof(AttackOnDotnetMvcCoreContext))]
-    partial class AttackOnDotnetMvcCoreContextModelSnapshot : ModelSnapshot
+    [Migration("20230115021557_Change-PlatformID-Test")]
+    partial class ChangePlatformIDTest
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -124,6 +127,7 @@ namespace AttackOnDotnetMvcCore.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
 
                     b.Property<string>("LongDescription")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
@@ -137,12 +141,15 @@ namespace AttackOnDotnetMvcCore.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("ShortDescription")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("SubTechniqueID")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("SubTechniqueName")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("TechniqueID")
@@ -168,15 +175,18 @@ namespace AttackOnDotnetMvcCore.Migrations
                     b.Property<bool>("Result")
                         .HasColumnType("bit");
 
+                    b.Property<string>("TechniqueID")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateTime>("TestDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("TestID")
+                    b.Property<int>("TestNumber")
                         .HasColumnType("int");
 
-                    b.Property<string>("UserID")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("UserID")
+                        .HasColumnType("int");
 
                     b.HasKey("ID");
 

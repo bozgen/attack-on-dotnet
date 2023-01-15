@@ -9,13 +9,15 @@
     ViewBag.UpperRoute = "/Home/Index";
 }
 
-@Html.PartialAsync("_Breadcrumbs").Result;
+<partial name="_Breadcrumbs" />
 
 <section class="sample-page">
     <div class="container" data-aos="fade-up">
+        @if(User.IsInRole("admin")) {
         <p>
             <a asp-action="Create">Create New</a>
         </p>
+        }
 
         <section id="horizontal-pricing" class="horizontal-pricing pt-0">
             <div class="container" data-aos="fade-up">

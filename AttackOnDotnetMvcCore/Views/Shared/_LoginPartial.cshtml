@@ -1,14 +1,17 @@
 ﻿@using Microsoft.AspNetCore.Identity
 
-@inject SignInManager<IdentityUser> SignInManager
-@inject UserManager<IdentityUser> UserManager
+@inject SignInManager<User> SignInManager
+@inject UserManager<User> UserManager
 
 
 @if (SignInManager.IsSignedIn(User))
 {
     <li class="dropdown">
-        <a href="/Account/Manage/Index">Account</a>
+        <a href="/Identity/Account/Manage">Account</a>
         <ul>
+            <li>
+                <a href="/TestResults/">My Previous Results</a>
+            </li>
             <li>
                 <form id="logoutForm" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
                     <a href="#" onclick="submitForm()">Logout</a>

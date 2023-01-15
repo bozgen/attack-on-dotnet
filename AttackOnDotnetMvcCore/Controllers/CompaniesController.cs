@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using AttackOnDotnetMvcCore.Data;
 using AttackOnDotnetMvcCore.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace AttackOnDotnetMvcCore.Controllers
 {
@@ -44,6 +45,7 @@ namespace AttackOnDotnetMvcCore.Controllers
         }
 
         // GET: Companies/Create
+        [Authorize(Roles = "admin")]
         public IActionResult Create()
         {
             return View();
@@ -54,6 +56,7 @@ namespace AttackOnDotnetMvcCore.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "admin")]
         public async Task<IActionResult> Create([Bind("ID,Name,Industry,Email,Phone,City,Address,RegisterDate")] Company company)
         {
             if (ModelState.IsValid)
@@ -66,6 +69,7 @@ namespace AttackOnDotnetMvcCore.Controllers
         }
 
         // GET: Companies/Edit/5
+        [Authorize(Roles = "admin")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null || _context.Company == null)
@@ -86,6 +90,7 @@ namespace AttackOnDotnetMvcCore.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "admin")]
         public async Task<IActionResult> Edit(int id, [Bind("ID,Name,Industry,Email,Phone,City,Address,RegisterDate")] Company company)
         {
             if (id != company.ID)
@@ -117,6 +122,7 @@ namespace AttackOnDotnetMvcCore.Controllers
         }
 
         // GET: Companies/Delete/5
+        [Authorize(Roles = "admin")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.Company == null)
@@ -137,6 +143,7 @@ namespace AttackOnDotnetMvcCore.Controllers
         // POST: Companies/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "admin")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             if (_context.Company == null)

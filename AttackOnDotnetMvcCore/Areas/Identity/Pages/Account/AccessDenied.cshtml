@@ -2,9 +2,16 @@
 @model AccessDeniedModel
 @{
     ViewData["Title"] = "Access denied";
+    ViewBag.PageName = "Access Denied";
+    ViewBag.UpperPageName = "Home";
+    ViewBag.UpperRoute = "/Home";
 }
+<partial name="_Breadcrumbs" />
+<div class="container">
+    <header class="p-4 m-1">
+        <h1 class="text-danger">@ViewData["Title"]</h1>
+        <p class="text-danger">You do not have access to this resource.</p>
+        <a class="btn btn-link p-2" href="/Home">Back to homepage</a>
+    </header>
+</div>
 
-<header>
-    <h1 class="text-danger">@ViewData["Title"]</h1>
-    <p class="text-danger">You do not have access to this resource.</p>
-</header>

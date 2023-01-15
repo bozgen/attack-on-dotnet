@@ -1,71 +1,88 @@
-﻿@model AttackOnDotnetMvcCore.Models.Test
+﻿@using AttackOnDotnetMvcCore.Models
+@model Tuple<Test,List<Technique>, List<Platform>>
 
 @{
     ViewData["Title"] = "Create";
+    ViewBag.PageName = "Create a Test";
+    ViewBag.UpperPageName = "Tests";
+    ViewBag.UpperRoute = "/Tests/Index";
 }
 
-<h1>Create</h1>
+<partial name="_Breadcrumbs" />
 
-<h4>Test</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="TechniqueID" class="control-label"></label>
-                <input asp-for="TechniqueID" class="form-control" />
-                <span asp-validation-for="TechniqueID" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="SubTechniqueID" class="control-label"></label>
-                <input asp-for="SubTechniqueID" class="form-control" />
-                <span asp-validation-for="SubTechniqueID" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="SubTechniqueName" class="control-label"></label>
-                <input asp-for="SubTechniqueName" class="form-control" />
-                <span asp-validation-for="SubTechniqueName" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Name" class="control-label"></label>
-                <input asp-for="Name" class="form-control" />
-                <span asp-validation-for="Name" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Number" class="control-label"></label>
-                <input asp-for="Number" class="form-control" />
-                <span asp-validation-for="Number" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Platform" class="control-label"></label>
-                <input asp-for="Platform" class="form-control" />
-                <span asp-validation-for="Platform" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ShortDescription" class="control-label"></label>
-                <input asp-for="ShortDescription" class="form-control" />
-                <span asp-validation-for="ShortDescription" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="LongDescription" class="control-label"></label>
-                <input asp-for="LongDescription" class="form-control" />
-                <span asp-validation-for="LongDescription" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Url" class="control-label"></label>
-                <input asp-for="Url" class="form-control" />
-                <span asp-validation-for="Url" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
+<div class="container">
+    <h4>Test</h4>
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="Create">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="Item1.TechniqueID" class="control-label"></label>
+                    <select asp-for="Item1.TechniqueID" class="form-control">
+                        <option value="-1">select a technique...</option>
+                        @foreach (var t in Model.Item2)
+                        {
+                            <option value="@t.ID">@t.Name</option>
+                        }
+                    </select>
+                    <span asp-validation-for="Item1.TechniqueID" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Item1.SubTechniqueID" class="control-label"></label>
+                    <input asp-for="Item1.SubTechniqueID" class="form-control" />
+                    <span asp-validation-for="Item1.SubTechniqueID" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Item1.SubTechniqueName" class="control-label"></label>
+                    <input asp-for="Item1.SubTechniqueName" class="form-control" />
+                    <span asp-validation-for="Item1.SubTechniqueName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Item1.Name" class="control-label"></label>
+                    <input asp-for="Item1.Name" class="form-control" />
+                    <span asp-validation-for="Item1.Name" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Item1.Number" class="control-label">ART Number</label>
+                    <input asp-for="Item1.Number" class="form-control" />
+                    <span asp-validation-for="Item1.Number" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Item1.PlatformID" class="control-label"></label>
+                    <select asp-for="Item1.PlatformID" class="form-control">
+                        <option>select a platform...</option>
+                        @foreach(var p in Model.Item3) {
+                            <option value="@p.ID">@p.Name</option>
+                        }
+                    </select>
+                    <span asp-validation-for="Item1.PlatformID" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Item1.ShortDescription" class="control-label"></label>
+                    <input asp-for="Item1.ShortDescription" class="form-control" />
+                    <span asp-validation-for="Item1.ShortDescription" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Item1.LongDescription" class="control-label"></label>
+                    <input asp-for="Item1.LongDescription" class="form-control" />
+                    <span asp-validation-for="Item1.LongDescription" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Item1.Url" class="control-label"></label>
+                    <input asp-for="Item1.Url" class="form-control" />
+                    <span asp-validation-for="Item1.Url" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Create" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
     </div>
-</div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
+    <div>
+        <a asp-action="Index">Back to List</a>
+    </div>
 </div>
 
 @section Scripts {

@@ -2,36 +2,40 @@
 
 @{
     ViewData["Title"] = "Edit";
+    ViewBag.PageName = "Edit Platform";
+    ViewBag.UpperPageName = "Platforms";
+    ViewBag.UpperRoute = "/Platforms/";
 }
 
-<h1>Edit</h1>
-
-<h4>Platform</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="ID" />
-            <div class="form-group">
-                <label asp-for="TechniqueID" class="control-label"></label>
-                <input asp-for="TechniqueID" class="form-control" />
-                <span asp-validation-for="TechniqueID" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Name" class="control-label"></label>
-                <input asp-for="Name" class="form-control" />
-                <span asp-validation-for="Name" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
-        </form>
+<partial name="_Breadcrumbs" />
+<div class="container">
+    <h4 class="mt-4">Edit Platform</h4>
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="Edit">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="ID" />
+                <div class="form-group">
+                    <label asp-for="TechniqueID" class="control-label"></label>
+                    <input asp-for="TechniqueID" class="form-control" />
+                    <span asp-validation-for="TechniqueID" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Name" class="control-label"></label>
+                    <input asp-for="Name" class="form-control" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Save" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
     </div>
-</div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
+    <div>
+        <a asp-action="Index">Back to List</a>
+    </div>
 </div>
 
 @section Scripts {

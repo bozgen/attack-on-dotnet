@@ -1,83 +1,52 @@
-﻿@model IEnumerable<AttackOnDotnetMvcCore.Models.Test>
+﻿@using AttackOnDotnetMvcCore.Models
+@model Tuple<List<Test>,List<Technique>, List<Platform>>
 
 @{
     ViewData["Title"] = "Index";
+    ViewBag.PageName = "Tests";
+    ViewBag.Explanation = "Here are the tests we provide to run on your machine";
+    ViewBag.UpperPageName = "Home";
+    ViewBag.UpperRoute = "/Home/";
 }
 
-<h1>Index</h1>
+<partial name="_Breadcrumbs" />
+<div class="container">
+    @if(User.IsInRole("admin")) {
+        <p>
+            <a asp-action="Create">Create New</a>
+        </p>
+    }
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.TechniqueID)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.SubTechniqueID)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.SubTechniqueName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Number)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Platform)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ShortDescription)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.LongDescription)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Url)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.TechniqueID)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.SubTechniqueID)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.SubTechniqueName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Number)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Platform)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ShortDescription)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.LongDescription)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Url)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.ID">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+    <section id="horizontal-pricing" class="horizontal-pricing pt-0">
+        <div class="container" data-aos="fade-up">
+
+            <div class="section-header mt-4">
+                <span>Vulnerability Tests</span>
+                <h2>Vulnerability Tests</h2>
+
+            </div>
+
+            @foreach (var test in Model.Item1)
+            {
+                <div class="row gy-3 pricing-item mt-4 p-5" data-aos="fade-up" data-aos-delay="100">
+                    <div class="col-lg-3 d-flex align-items-center justify-content-center">
+                        <h3>@test.Name</h3>
+                    </div>
+                    <div class="col-lg-2 d-flex align-items-center justify-content-center">
+                        <h6>@Model.Item2.Where(technique => technique.ID == test.TechniqueID).FirstOrDefault()?.Name</h6>
+                    </div>
+                    <div class="col-lg-2 d-flex align-items-center justify-content-center">
+                        <h5>@Model.Item3.Where(platform => platform.ID == test.PlatformID).FirstOrDefault()?.Name</h5>
+                    </div>
+                    <div class="col-lg-3 d-flex align-items-center justify-content-center">
+                        <div class="text-center"><a href="/Tests/Details/@test.ID" class="buy-btn">See Test Details</a></div>
+                    </div>
+                    <div class="col-lg-2 d-flex align-items-center justify-content-center">
+                        <div class="text-center"><a href="/Tests/Permission/@test.ID" class="buy-btn">Run Test</a></div>
+                    </div>
+                </div>
+            }
+        </div>
+    </section>
+</div>
+

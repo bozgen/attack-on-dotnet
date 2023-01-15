@@ -1,0 +1,54 @@
+﻿@model AttackOnDotnetMvcCore.Models.Test
+
+@{
+    ViewData["Title"] = "Run Test";
+    ViewBag.PageName = "Run " + Model.Name + " Test";
+    ViewBag.UpperPageName = "Tests";
+    ViewBag.UpperRoute = "/Tests/";
+    ViewBag.Explanation = "Here you can run the test you have selected. It is essential that you read and understand what a test does before you run it. All the responsibility is yours if the test leaves your computer in an undesirable state.";
+}
+
+<partial name="_Breadcrumbs" />
+
+<div class="container">
+    <h2 class="mt-3">Do you want to continue?</h2>
+
+    <div class="d-flex">
+        <div class="col-6">
+            <h3 class="header">Test Information</h3>
+            <table class="table w-75">
+                <tbody>
+                    <tr class="row">
+                        <td class="col">Technique ID</td>
+                        <td class="col">@("T" + Model.TechniqueID.ToString())</td>
+                    </tr>
+                    <tr class="row">
+                        <td class="col">Test Name</td>
+                        <td class="col">@Model.Name</td>
+                    </tr>
+                    <tr class="row">
+                        <td class="col">ART Number</td>
+                        <td class="col">@Model.Number</td>
+                    </tr>
+                    <tr class="row">
+                        <td class="col">Description</td>
+                        <td class="col">@Model.ShortDescription</td>
+                    </tr>
+                    <tr class="row">
+                        <td class="col"></td>
+                        <td class="col"><a href="@Model.Url">Read More...</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="col-6">
+            <h4>Confirming this, will run a script on your local machine!</h4>
+            <h5>The details about the test is displayed on the left.</h5>
+            <p>Do you want to continue?</p>
+
+            <a class="btn btn-primary" onclick="showSpinner" asp-action="Run" asp-route-id="@Model.ID">Run Test</a>
+            <a href="/Tests/" class="btn btn-primary">Go back</a>
+        </div>
+    </div>
+</div>

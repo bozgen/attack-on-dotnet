@@ -7,9 +7,11 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using AttackOnDotnetMvcCore.Data;
 using AttackOnDotnetMvcCore.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace AttackOnDotnetMvcCore.Controllers
 {
+    [Authorize(Roles = "admin")]
     public class PlatformsController : Controller
     {
         private readonly AttackOnDotnetMvcCoreContext _context;

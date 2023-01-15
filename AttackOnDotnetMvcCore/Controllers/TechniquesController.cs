@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using AttackOnDotnetMvcCore.Data;
 using AttackOnDotnetMvcCore.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace AttackOnDotnetMvcCore.Controllers
 {
@@ -34,7 +35,6 @@ namespace AttackOnDotnetMvcCore.Controllers
                 }
                 resultList.Add(Tuple.Create(technique, platformNames));
             }
-            Console.WriteLine("asdasd");
             return View(resultList);
         }
 
@@ -63,6 +63,7 @@ namespace AttackOnDotnetMvcCore.Controllers
         }
 
         // GET: Techniques/Create
+        [Authorize(Roles = "admin")]
         public IActionResult Create()
         {
             return View();
@@ -73,6 +74,7 @@ namespace AttackOnDotnetMvcCore.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "admin")]
         public async Task<IActionResult> Create([Bind("ID,Name,TacticName,ShortDescription,LongDescription,Url")] Technique technique)
         {
             if (ModelState.IsValid)
@@ -85,6 +87,7 @@ namespace AttackOnDotnetMvcCore.Controllers
         }
 
         // GET: Techniques/Edit/5
+        [Authorize(Roles = "admin")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null || _context.Technique == null)
@@ -105,6 +108,7 @@ namespace AttackOnDotnetMvcCore.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "admin")]
         public async Task<IActionResult> Edit(int id, [Bind("ID,Name,TacticName,ShortDescription,LongDescription,Url")] Technique technique)
         {
             if (id != technique.ID)
@@ -136,6 +140,7 @@ namespace AttackOnDotnetMvcCore.Controllers
         }
 
         // GET: Techniques/Delete/5
+        [Authorize(Roles = "admin")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.Technique == null)
@@ -154,6 +159,7 @@ namespace AttackOnDotnetMvcCore.Controllers
         }
 
         // POST: Techniques/Delete/5
+        [Authorize(Roles = "admin")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
