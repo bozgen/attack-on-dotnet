@@ -46,8 +46,8 @@ namespace AttackOnDotnetMvcCore.Controllers
             {
                 return NotFound();
             }
-
-            return View(testResult);
+            var test = _context.Test.Where(t => t.ID == testResult.TestID).First();
+            return View(Tuple.Create(testResult, test));
         }
 
         // GET: TestResults/Delete/5
@@ -87,13 +87,15 @@ namespace AttackOnDotnetMvcCore.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        public IActionResult Secure()
+        public IActionResult Secure(int id)
         {
-            return View();
+            var test = _context.Test.Where(t => t.ID == id).First();
+            return View(test);
         }
-        public IActionResult Vulnerable()
+        public IActionResult Vulnerable(int id)
         {
-            return View();
+            var test = _context.Test.Where(t => t.ID == id).First();
+            return View(test);
         }
         public IActionResult TestFailed()
         {

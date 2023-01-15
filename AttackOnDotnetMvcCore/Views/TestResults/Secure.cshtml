@@ -1,4 +1,5 @@
-﻿@{
+﻿@model AttackOnDotnetMvcCore.Models.Test
+@{
 	ViewData["Title"] = "Test Result";
 	ViewBag.PageName = "Device Secure";
 	ViewBag.UpperPageName = "Tests";
@@ -8,6 +9,15 @@
 <partial name="_Breadcrumbs" />
 
 <div class="container">
-	<h1> YOUR DEVICE IS SECURE</h1>
-	<a asp-action="Index">Go to history</a>
+	<h2 class="p-4 px-0 header">Your device is secure</h2>
+	
+	<p>Your device is secure against @Model.Name attacks.</p>
+
+	<h5 class="mt-4">More about @Model.Name attacks</h5>
+	<p>@Model.LongDescription</p>
+	<a href="@Model.Url">Read More...</a>
+
+	<div class="p-5 px-0">
+		<a asp-action="Index">Go to history</a>
+	</div>
 </div>

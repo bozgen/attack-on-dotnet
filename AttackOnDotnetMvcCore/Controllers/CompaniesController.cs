@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace AttackOnDotnetMvcCore.Controllers
 {
+    [Authorize(Roles = "admin")]
     public class CompaniesController : Controller
     {
         private readonly AttackOnDotnetMvcCoreContext _context;

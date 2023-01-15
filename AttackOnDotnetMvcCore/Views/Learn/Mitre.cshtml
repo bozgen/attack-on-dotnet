@@ -1,0 +1,32 @@
+﻿@{
+    ViewBag.Title = "Index";
+    ViewBag.PageName = "What is MITRE ATTACK";
+    ViewBag.Explanation = "MITRE ATT&CK is a framework that describes procedures, tactics and techniques that threat actors use to attack the target computers.";
+    ViewBag.UpperPageName = "Learn";
+    ViewBag.UpperRoute = "/Learn";
+}
+
+<partial name="_Breadcrumbs" />
+
+<section class="sample-page">
+    <div class="container" data-aos="fade-up">
+        <p>
+            MITRE ATT&CK is a framework that describes procedures, tactics and techniques that threat actors use to attack the target computers.
+            The framework is widely accepted and used as a foundation while trying to understand the attacker's perspective and develop counter strategies.
+        </p>
+        <p>
+            The ATT&CK Framework developed by MITRE was born from the need to classify attacker behaviors in a systematic manner. Initially developed for attacks on Microsoft Windows operating systems, it was later expanded to include attacks on various platforms including Linux and MacOS. The MITRE ATT&CK Framework includes the following main components:
+            <ul>
+                <li><p>Tactics: The objectives of an attack.</p></li>
+                <li><p>Techniques: The methods used by an attacker to achieve their objectives.</p></li>
+                <li><p>Sub-techniques: More detailed and specific areas of techniques.</p></li>
+                <li><p>The documentation of the ways in which attackers use these techniques and procedures.</p></li>
+            </ul>
+            <br />
+            <a href="/Learn/AtomicRedTeam">Atomic Red Team</a>
+            <br /><br />
+            <a href="/Techniques">The techniques we use</a>
+
+        </p>
+    </div>
+</section>

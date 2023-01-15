@@ -8,6 +8,15 @@
 <partial name="_Breadcrumbs" />
 
 <div class="container">
-	<h1> YOUR DEVICE IS VULNERABLE</h1>
+	<h2 class="p-4 px-0 header">Your device is vulnerable</h2>
+
+	<p>Your device is vulnerable against @Model.Name attacks.</p>
+
+	<h5 class="mt-4">More about @Model.Name attacks</h5>
+	<p>@Model.LongDescription</p>
+	<a href="@Model.Url">Read More...</a>
+
+	<div class="p-5 px-0">
 	<a asp-action="Index">Go to history</a>
+	</div>
 </div>

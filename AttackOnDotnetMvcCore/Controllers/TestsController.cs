@@ -194,6 +194,7 @@ namespace AttackOnDotnetMvcCore.Controllers
             Func<Test.TestResult> testFunction = Test.TestNotFound;
             string redirectAction = "";
             string redirectController = "";
+            string redirectParam = "";
             TestResult testResultObject;
             
             if(test.TechniqueID == 1059)
@@ -245,12 +246,14 @@ namespace AttackOnDotnetMvcCore.Controllers
                 testResultObject.Result = true;
                 redirectAction = "Secure";
                 redirectController = "TestResults";
+                redirectParam = test.ID.ToString();
             }
             else if (result == Test.TestResult.Vulnerable)
             {
                 testResultObject.Result = false;
                 redirectAction = "Vulnerable";
                 redirectController = "TestResults";
+                redirectParam = test.ID.ToString();
             }
             else if (result == Test.TestResult.TestFailed)
             {
@@ -268,7 +271,7 @@ namespace AttackOnDotnetMvcCore.Controllers
             }
             _context.TestResult.Add(testResultObject);
             _context.SaveChanges();
-            return RedirectToAction(redirectAction, redirectController);
+            return Redirect(string.Format("/{0}/{1}/{2}", redirectController, redirectAction, redirectParam));
         }
 
         private bool TestExists(int id)

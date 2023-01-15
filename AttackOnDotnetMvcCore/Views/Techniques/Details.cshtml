@@ -12,41 +12,53 @@
 @Html.PartialAsync("_Breadcrumbs").Result;
 
 <div class="container">
-    <h2 class="header">Technique Information</h2>
-    <table class="table w-25">
-        <tbody>
-            <tr class="row">
-                <td class="col">Technique ID</td>
-                <td class="col">@("T" + Model.Item1.ID.ToString())</td>
-            </tr>
-            <tr class="row">
-                <td class="col">Technique Name</td>
-                <td class="col">@Model.Item1.Name</td>
-            </tr>
-            <tr class="row">
-                <td class="col">Tactic Name</td>
-                <td class="col">@Model.Item1.TacticName</td>
-            </tr>
-            <tr class="row">
-                <td class="col">Platforms</td>
-                <td class="col">
-                    @if (Model.Item2 != null)
-                    {
-                        @foreach (var p in Model.Item2)
-                        {
-                            <p>@p</p>
-                        }
-                    }
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    @if (User.IsInRole("admin")) {
-        <div>
-            <a asp-action="Edit" asp-route-id="@Model.Item1.ID">Edit</a>
-            <a asp-action="Index">Back to List</a>
+    <div class="d-flex">
+        <div class="col-6">
+            <h2 class="header">Technique Information</h2>
+            <table class="table w-75">
+                <tbody>
+                    <tr class="row">
+                        <td class="col">Technique ID</td>
+                        <td class="col">@("T" + Model.Item1.ID.ToString())</td>
+                    </tr>
+                    <tr class="row">
+                        <td class="col">Technique Name</td>
+                        <td class="col">@Model.Item1.Name</td>
+                    </tr>
+                    <tr class="row">
+                        <td class="col">Tactic Name</td>
+                        <td class="col">@Model.Item1.TacticName</td>
+                    </tr>
+                    <tr class="row">
+                        <td class="col">Platforms</td>
+                        <td class="col">
+                            @if (Model.Item2 != null)
+                            {
+                                @foreach (var p in Model.Item2)
+                                {
+                                    <p>@p</p>
+                                }
+                            }
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
+        <div class="col-6">
+            <h4 class="header">About the Technique</h4>
+            <p>@Model.Item1.LongDescription</p>
+            <a href="@Model.Item1.Url">Read More...</a>
+        </div>
+    </div>
+
+    <div class="p-4 px-0">
+    @if (User.IsInRole("admin"))
+    {
+    <a class="mx-3" asp-action="Edit" asp-route-id="@Model.Item1.ID">Edit</a>
     }
+    <a asp-action="Index">Back to List</a>
+    </div>
+    
 
 </div>
 
