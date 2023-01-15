@@ -30,8 +30,14 @@
             </div>
 
             <div class="form-floating">
-                <input asp-for="Input.CompanyID" class="form-control" aria-required="true" />
-                <label asp-for="Input.CompanyID"></label>
+                @*<input asp-for="Input.CompanyID" class="form-control" aria-required="true" />*@
+                <select asp-for="Input.CompanyID" class="form-control" aria-required="true">
+                    <option value="-1">select a company</option>
+                    @foreach(var c in Model._context.Company) {
+                        <option value="@c.ID">@c.Name</option>
+                    }
+                </select>
+                <label asp-for="Input.CompanyID">Company</label>
                 <span asp-validation-for="Input.CompanyID" class="text-danger"></span>
             </div>
             
