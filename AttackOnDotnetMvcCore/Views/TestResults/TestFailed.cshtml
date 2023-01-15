@@ -1,0 +1,13 @@
+﻿@{
+	ViewData["Title"] = "Test Result";
+	ViewBag.PageName = "Test Failed";
+	ViewBag.UpperPageName = "Tests";
+	ViewBag.UpperRoute = "/Tests/";
+}
+
+<partial name="_Breadcrumbs" />
+
+<div class="container">
+	<h1>THE TEST YOU TRIED TO RUN COULD NOT BE RUN ON YOUR LOCAL MACHINE</h1>
+	<a asp-action="Index">Go to history</a>
+</div>

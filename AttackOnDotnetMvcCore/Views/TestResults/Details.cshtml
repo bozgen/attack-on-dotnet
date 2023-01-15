@@ -1,0 +1,41 @@
+﻿@model AttackOnDotnetMvcCore.Models.TestResult
+
+@{
+    ViewData["Title"] = "Details";
+    ViewBag.PageName = "Test Results";
+    ViewBag.Explanation = "Here is the details of your test results";
+    ViewBag.UpperPageName = "Test Results";
+    ViewBag.UpperRoute = "/TestResults/";
+}
+
+<partial name="_Breadcrumbs" />
+
+<div class="container">
+    <div>
+        <h4 class="p-1 mt-3">Test Result Details</h4>
+        <hr />
+        <dl class="row">
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.UserID)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.UserID)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.TestDate)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.TestDate)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Result)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Result)
+            </dd>
+        </dl>
+    </div>
+    <div>
+        <a class="p-4 px-2" asp-action="Index">Back to List</a>
+    </div>
+</div>
