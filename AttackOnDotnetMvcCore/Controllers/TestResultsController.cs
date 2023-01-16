@@ -57,12 +57,14 @@ namespace AttackOnDotnetMvcCore.Controllers
             {
                 return NotFound();
             }
-
+            string UserID = User.FindFirst(ClaimTypes.NameIdentifier).Value;
             var testResult = await _context.TestResult
                 .FirstOrDefaultAsync(m => m.ID == id);
             if (testResult == null)
             {
                 return NotFound();
+            } else if (testResult.UserID != UserID) {
+                return Redirect("/Identity/Account/AccessDenied");
             }
 
             return View(testResult);
@@ -78,9 +80,13 @@ namespace AttackOnDotnetMvcCore.Controllers
                 return Problem("Entity set 'AttackOnDotnetMvcCoreContext.TestResult'  is null.");
             }
             var testResult = await _context.TestResult.FindAsync(id);
+            string UserID = User.FindFirst(ClaimTypes.NameIdentifier).Value;
             if (testResult != null)
             {
-                _context.TestResult.Remove(testResult);
+                if (testResult.UserID == UserID)
+                    _context.TestResult.Remove(testResult);
+                else
+                    return Redirect("/Identity/Account/AccessDenied");
             }
             
             await _context.SaveChangesAsync();

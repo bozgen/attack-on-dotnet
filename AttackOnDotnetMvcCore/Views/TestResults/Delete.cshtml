@@ -28,10 +28,10 @@
                 @Html.DisplayFor(model => model.TestDate)
             </dd>
             <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.Result)
+                Result
             </dt>
             <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.Result)
+                @(Model.Result ? "Secure" : "Vulnerable")
             </dd>
         </dl>
 
