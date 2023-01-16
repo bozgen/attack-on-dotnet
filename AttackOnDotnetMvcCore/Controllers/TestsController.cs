@@ -227,10 +227,32 @@ namespace AttackOnDotnetMvcCore.Controllers
                     return RedirectToAction("NotImplemented", "TestResults");
                 }
             }
+            else if (test.TechniqueID == 1113)
+            {
+                if(test.Number == 6)
+                {
+                    testFunction = Test.RunTest1113_000_6;
+                }
+                else
+                {
+                    return RedirectToAction("NotImplemented", "TestResults");
+                }
+            }
+            else if (test.TechniqueID == 1003)
+            {
+                if(test.Number == 6)
+                {
+                    testFunction = Test.RunTest1003_000_6;
+                }
+                else
+                {
+                    return RedirectToAction("NotImplemented", "TestResults");
+                }
+            }
             else
             {
                 testFunction = Test.TestNotFound;
-                return NotFound();
+                return RedirectToAction("NotImplemented", "TestResults");
             }
             
             var result = testFunction.Invoke();
@@ -274,6 +296,45 @@ namespace AttackOnDotnetMvcCore.Controllers
             return Redirect(string.Format("/{0}/{1}/{2}", redirectController, redirectAction, redirectParam));
         }
 
+        public IActionResult Cleanup(int id)
+        {
+            var test = _context.Test.Where(t => t.ID == id).First();
+            Func<bool> cleanupFunction;
+            string redirectAction = "";
+            string redirectController = "";
+            string redirectParam = "";
+
+            if(test.TechniqueID == 1113)
+            {
+                if(test.Number == 6)
+                {
+                    cleanupFunction = Test.RunCleanup1113_000_6;
+                }
+                else
+                {
+                    return NotFound();
+                }
+            }
+            else
+            {
+                return NotFound();
+            }
+
+            bool successful = cleanupFunction.Invoke();
+            if (successful)
+            {
+                redirectAction = "CleanupSuccess";
+                redirectController = "TestResults";
+                redirectParam = test.ID.ToString();
+            }
+            else
+            {
+                redirectAction = "CleanupFail";
+                redirectController = "TestResults";
+                redirectParam = test.ID.ToString();
+            }
+            return Redirect(String.Format("/{0}/{1}/{2}", redirectController, redirectAction, redirectParam));
+        }
         private bool TestExists(int id)
         {
           return _context.Test.Any(e => e.ID == id);

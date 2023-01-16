@@ -1,0 +1,23 @@
+﻿@model AttackOnDotnetMvcCore.Models.Test
+@{
+	ViewData["Title"] = "Cleanup Result";
+	ViewBag.PageName = "Cleanup Successful";
+	ViewBag.UpperPageName = "Tests";
+	ViewBag.UpperRoute = "/Tests/";
+}
+
+<partial name="_Breadcrumbs" />
+
+<div class="container">
+	<h2 class="p-4 px-0 header">The cleanup is successfully executed</h2>
+	
+	<p>Your device is in the same state as @Model.Name attack has is not executed.</p>
+
+	<h5 class="mt-4">More about @Model.Name attack</h5>
+	<p>@Model.LongDescription</p>
+	<a href="@Model.Url">Read More...</a>
+
+	<div class="p-5 px-0">
+		<a asp-action="Index">Go to history</a>
+	</div>
+</div>

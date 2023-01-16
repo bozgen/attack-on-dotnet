@@ -16,6 +16,12 @@
 	<p>@Model.LongDescription</p>
 	<a href="@Model.Url">Read More...</a>
 
+	@if(Model.TechniqueID == 1113 && Model.Number == 6){
+	<div class="p-5 px-0">
+		<a class="btn btn-primary" href="/Tests/Cleanup/@Model.ID">Run Cleanup</a>
+	</div>
+	}
+
 	<div class="p-5 px-0">
 	<a asp-action="Index">Go to history</a>
 	</div>

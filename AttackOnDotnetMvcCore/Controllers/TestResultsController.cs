@@ -98,6 +98,19 @@ namespace AttackOnDotnetMvcCore.Controllers
             var test = _context.Test.Where(t => t.ID == id).First();
             return View(test);
         }
+
+        public IActionResult CleanupSuccess(int id)
+        {
+            var test = _context.Test.Where(t => t.ID == id).First();
+            return View(test);
+        }
+
+        public IActionResult CleanupFail(int id)
+        {
+            var test = _context.Test.Where(t => t.ID == id).First();
+            return View(test);
+        }
+
         public IActionResult Vulnerable(int id)
         {
             var test = _context.Test.Where(t => t.ID == id).First();

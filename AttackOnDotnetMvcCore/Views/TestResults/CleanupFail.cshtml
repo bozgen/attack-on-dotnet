@@ -1,0 +1,25 @@
+﻿@model AttackOnDotnetMvcCore.Models.Test
+@{
+	ViewData["Title"] = "Cleanup Result";
+	ViewBag.PageName = "Cleanup Failed";
+	ViewBag.UpperPageName = "Tests";
+	ViewBag.UpperRoute = "/Tests/";
+}
+
+<partial name="_Breadcrumbs" />
+
+<div class="container">
+	<h2 class="p-4 px-0 header">The cleanup could not be executed</h2>
+
+	<p>Your device is unfortunately in the same state as it is after @Model.Name attack was executed.</p>
+	<p>This might be because you have already run the cleanup function before. Usually running the cleanup only one time is enough even though you have run the attack simulation more than one time.</p>
+	<p>If you do not think that is the issue, please <a href="/Contact">contact us</a> to get further support.</p>
+
+	<h5 class="mt-4">More about @Model.Name attack</h5>
+	<p>@Model.LongDescription</p>
+	<a href="@Model.Url">Read More...</a>
+
+	<div class="p-5 px-0">
+		<a asp-action="Index">Go to history</a>
+	</div>
+</div>
