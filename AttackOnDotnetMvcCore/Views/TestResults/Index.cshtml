@@ -11,42 +11,48 @@
 
 <partial name="_Breadcrumbs" />
 
-<div class="container">
-    <table class="table mt-4 mb-4 p-5">
-        <thead>
-            <tr>
-                <th>
-                    Test Name
-                </th>
-                <th>
-                    Test Date
-                </th>
-                <th>
-                    Result
-                </th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model.Item1)
-            {
+<div class="container p-4">
+    @if(Model.Item1.Count > 0){
+        <table class="table mt-4 mb-4 p-5">
+            <thead>
                 <tr>
-                    <td>
-                        @Model.Item2.Where(t => t.ID == item.TestID).First().Name
-                    </td>
-                    <td>
-                        @item.TestDate
-                    </td>
-                    <td>
-                        @(item.Result ? "Secure" : "Vulnerable")
-                    </td>
-                    <td>
-                        <a class="mx-3" asp-action="Details" asp-route-id="@item.ID">Details</a>
-                        <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
-                    </td>
+                    <th>
+                        Test Name
+                    </th>
+                    <th>
+                        Test Date
+                    </th>
+                    <th>
+                        Result
+                    </th>
+                    <th></th>
                 </tr>
-            }
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Item1)
+                {
+                    <tr>
+                        <td>
+                            @Model.Item2.Where(t => t.ID == item.TestID).First().Name
+                        </td>
+                        <td>
+                            @item.TestDate
+                        </td>
+                        <td>
+                            @(item.Result ? "Secure" : "Vulnerable")
+                        </td>
+                        <td>
+                            <a class="mx-3" asp-action="Details" asp-route-id="@item.ID">Details</a>
+                            <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    } else {
+        <h4 class="p-5 px-0 pb-0">You have not executed any tests yet.</h4>
+        <a class="btn btn-primary m-4 mx-0" href="/Tests">Run Tests</a>
+    }
+    
 </div>
 
